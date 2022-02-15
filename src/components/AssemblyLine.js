@@ -76,8 +76,36 @@ export default function AssemblyLine({ stages }) {
         });
     }
 
-    const handleRightClick = (itemName) => {
-        console.log('right clicked: '+ itemName)
+    const handleRightClick = (id, category, itemName) => {
+        // update itemsData based on prev object data
+        setItemsData((prevMap) => {
+            let newMap = {};
+            // edge case for first column
+            let prevCategory = category !== stages[0]
+                ? stages[stages.indexOf(category) - 1]
+                : null
+            // [k, v] looks like this: ['Idea', [{..}, {..}]]
+            Object.entries(prevMap).forEach(([k, v]) => {
+              // remove clicked item from current category
+              if (k === category) {
+                newMap[k] = v.filter((item) => item.id !== id);
+              } else if (prevCategory && k === prevCategory) {
+                // append clicked item to prev category
+                console.log(prevCategory)
+                newMap[k] = [
+                  ...v,
+                  {
+                    item: itemName,
+                    category: k,
+                    id: uuid()
+                  }
+                ];
+              } else {
+                newMap[k] = v;
+              }
+            });
+            return newMap;
+        });
     }
 
     let content = itemsData &&
