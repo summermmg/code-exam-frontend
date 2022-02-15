@@ -59,7 +59,7 @@ export default function AssemblyLine({ stages }) {
                 newMap[k] = v.filter((item) => item.id !== id);
               } else if (nextCategory && k === nextCategory) {
                 // prepend clicked item to next category
-                console.log(nextCategory)
+                // console.log(nextCategory)
                 newMap[k] = [
                   {
                     item: itemName,
@@ -91,7 +91,7 @@ export default function AssemblyLine({ stages }) {
                 newMap[k] = v.filter((item) => item.id !== id);
               } else if (prevCategory && k === prevCategory) {
                 // append clicked item to prev category
-                console.log(prevCategory)
+                // console.log(prevCategory)
                 newMap[k] = [
                   ...v,
                   {
@@ -132,7 +132,7 @@ export default function AssemblyLine({ stages }) {
                 onChange={handleInputChange}
                 />
                 <span>
-                    <small> *Please use keybord 'enter' to submit</small>
+                    <small> *Please use keyboard 'ENTER' to submit</small>
                 </span>
             </form>
             <div className="ul-container">{content}</div>
