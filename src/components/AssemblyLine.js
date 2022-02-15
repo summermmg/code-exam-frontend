@@ -20,6 +20,7 @@ export default function AssemblyLine({ stages }) {
     // by press 'ENTER', task will be added to first col
     const handleInputSubmit = (e) => {
         e.preventDefault();
+        if (!inputValue) {return}
         setItemsData((prevMap) => {
             let newMap = {};
             // [k, v] looks like this: ['Idea', [{..}, {..}]]
