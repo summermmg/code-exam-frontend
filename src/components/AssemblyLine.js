@@ -44,8 +44,36 @@ export default function AssemblyLine({ stages }) {
         setInputValue("");
     };
 
-    const handleLeftClick = (itemName) => {
-        console.log('left clicked: '+ itemName)
+    const handleLeftClick = (id, category, itemName) => {
+        // update itemsData based on prev object data
+        setItemsData((prevMap) => {
+            let newMap = {};
+            // edge case for last column
+            let nextCategory = category !== stages[-1]
+                ? stages[stages.indexOf(category) + 1]
+                : null
+            // [k, v] looks like this: ['Idea', [{..}, {..}]]
+            Object.entries(prevMap).forEach(([k, v]) => {
+              // remove clicked item from current category
+              if (k === category) {
+                newMap[k] = v.filter((item) => item.id !== id);
+              } else if (nextCategory && k === nextCategory) {
+                // prepend clicked item to next category
+                console.log(nextCategory)
+                newMap[k] = [
+                  {
+                    item: itemName,
+                    category: k,
+                    id: uuid()
+                  },
+                  ...v
+                ];
+              } else {
+                newMap[k] = v;
+              }
+            });
+            return newMap;
+        });
     }
 
     const handleRightClick = (itemName) => {
