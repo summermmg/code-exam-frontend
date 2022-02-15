@@ -9,3 +9,4 @@ To run locally:
 $ npm install
 $ npm run start
 ``` 
+[View Live Demo](https://summermmg.github.io/code-exam-frontend/)
