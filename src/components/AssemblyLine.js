@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import Items from './Items';
+import uuid from "react-uuid";
 
 export default function AssemblyLine({ stages }) {
     // create initial state
@@ -19,7 +20,27 @@ export default function AssemblyLine({ stages }) {
     // by press 'ENTER', task will be added to first col
     const handleInputSubmit = (e) => {
         e.preventDefault();
-        console.log('submitted: '+ inputValue)
+        setItemsData((prevMap) => {
+            let newMap = {};
+            // [k, v] looks like this: ['Idea', [{..}, {..}]]
+            Object.entries(prevMap).forEach(([k, v]) => {
+              // console.log(k, v)
+              // prepend new task to first column and give it an unique id
+              if (k === stages[0]) {
+                newMap[k] = [
+                  {
+                    item: inputValue,
+                    category: k,
+                    id: uuid()
+                  },
+                  ...v
+                ];
+              } else {
+                newMap[k] = v;
+              }
+            });
+            return newMap;
+        });
         setInputValue("");
     };
 
