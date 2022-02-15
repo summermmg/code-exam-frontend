@@ -23,21 +23,20 @@ export default function AssemblyLine({ stages }) {
         if (!inputValue) {return}
         setItemsData((prevMap) => {
             let newMap = {};
-            // [k, v] looks like this: ['Idea', [{..}, {..}]]
-            Object.entries(prevMap).forEach(([k, v]) => {
-              // console.log(k, v)
+            // [categoryName, itemList] looks like this: ['Idea', [{..}, {..}]]
+            Object.entries(prevMap).forEach(([categoryName, itemList]) => {
               // prepend new task to first column and give it an unique id
-              if (k === stages[0]) {
-                newMap[k] = [
+              if (categoryName === stages[0]) {
+                newMap[categoryName] = [
                   {
                     item: inputValue,
-                    category: k,
+                    category: categoryName,
                     id: uuid()
                   },
-                  ...v
+                  ...itemList
                 ];
               } else {
-                newMap[k] = v;
+                newMap[categoryName] = itemList;
               }
             });
             return newMap;
@@ -53,24 +52,23 @@ export default function AssemblyLine({ stages }) {
             let nextCategory = category !== stages[-1]
                 ? stages[stages.indexOf(category) + 1]
                 : null
-            // [k, v] looks like this: ['Idea', [{..}, {..}]]
-            Object.entries(prevMap).forEach(([k, v]) => {
+            // [categoryName, itemList] looks like this: ['Idea', [{..}, {..}]]
+            Object.entries(prevMap).forEach(([categoryName, itemList]) => {
               // remove clicked item from current category
-              if (k === category) {
-                newMap[k] = v.filter((item) => item.id !== id);
-              } else if (nextCategory && k === nextCategory) {
+              if (categoryName === category) {
+                newMap[categoryName] = itemList.filter((item) => item.id !== id);
+              } else if (nextCategory && categoryName === nextCategory) {
                 // prepend clicked item to next category
-                // console.log(nextCategory)
-                newMap[k] = [
+                newMap[categoryName] = [
                   {
                     item: itemName,
-                    category: k,
+                    category: categoryName,
                     id: uuid()
                   },
-                  ...v
+                  ...itemList
                 ];
               } else {
-                newMap[k] = v;
+                newMap[categoryName] = itemList;
               }
             });
             return newMap;
@@ -85,24 +83,23 @@ export default function AssemblyLine({ stages }) {
             let prevCategory = category !== stages[0]
                 ? stages[stages.indexOf(category) - 1]
                 : null
-            // [k, v] looks like this: ['Idea', [{..}, {..}]]
-            Object.entries(prevMap).forEach(([k, v]) => {
+            // [categoryName, itemList] looks like this: ['Idea', [{..}, {..}]]
+            Object.entries(prevMap).forEach(([categoryName, itemList]) => {
               // remove clicked item from current category
-              if (k === category) {
-                newMap[k] = v.filter((item) => item.id !== id);
-              } else if (prevCategory && k === prevCategory) {
+              if (categoryName === category) {
+                newMap[categoryName] = itemList.filter((item) => item.id !== id);
+              } else if (prevCategory && categoryName === prevCategory) {
                 // append clicked item to prev category
-                // console.log(prevCategory)
-                newMap[k] = [
-                  ...v,
+                newMap[categoryName] = [
+                  ...itemList,
                   {
                     item: itemName,
-                    category: k,
+                    category: categoryName,
                     id: uuid()
                   }
                 ];
               } else {
-                newMap[k] = v;
+                newMap[categoryName] = itemList;
               }
             });
             return newMap;

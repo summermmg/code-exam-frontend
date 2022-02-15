@@ -1,5 +1,6 @@
 export default function Item({ item, onLeftClick, onRightClick }) {
     const handleClick = (e) => {
+        e.preventDefault();
         if (e.type === "click") {
             onLeftClick(item.id, item.category, item.item);
         } else if (e.type === "contextmenu") {
