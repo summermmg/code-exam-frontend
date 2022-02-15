@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/code-exam-frontend/static/css/main.6ec07015.css",
-    "main.js": "/code-exam-frontend/static/js/main.086bc200.js",
+    "main.css": "/code-exam-frontend/static/css/main.32c344f0.css",
+    "main.js": "/code-exam-frontend/static/js/main.717cd2f6.js",
     "index.html": "/code-exam-frontend/index.html",
-    "main.6ec07015.css.map": "/code-exam-frontend/static/css/main.6ec07015.css.map",
-    "main.086bc200.js.map": "/code-exam-frontend/static/js/main.086bc200.js.map"
+    "main.32c344f0.css.map": "/code-exam-frontend/static/css/main.32c344f0.css.map",
+    "main.717cd2f6.js.map": "/code-exam-frontend/static/js/main.717cd2f6.js.map"
   },
   "entrypoints": [
-    "static/css/main.6ec07015.css",
-    "static/js/main.086bc200.js"
+    "static/css/main.32c344f0.css",
+    "static/js/main.717cd2f6.js"
   ]
 }
