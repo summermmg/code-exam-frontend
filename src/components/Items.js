@@ -1,6 +1,6 @@
 import Item from "./Item";
 
-export default function Items({ category, items }) {
+export default function Items({ category, items, onLeftClick, onRightClick }) {
     // here we pass an unique id as key
     return (
         <ul className="ul-list">
@@ -9,6 +9,8 @@ export default function Items({ category, items }) {
                 <Item
                 key={item.id}
                 item={item}
+                onLeftClick={onLeftClick}
+                onRightClick={onRightClick}
                 />
             ))}
         </ul>

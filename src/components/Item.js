@@ -1,9 +1,9 @@
-export default function Item({ item }) {
+export default function Item({ item, onLeftClick, onRightClick }) {
     const handleClick = (e) => {
         if (e.type === "click") {
-          console.log('left clicked')
+            onLeftClick(item.item);
         } else if (e.type === "contextmenu") {
-          console.log('right clicked')
+            onRightClick(item.item);
         }
     };
 

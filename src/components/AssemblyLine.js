@@ -44,6 +44,14 @@ export default function AssemblyLine({ stages }) {
         setInputValue("");
     };
 
+    const handleLeftClick = (itemName) => {
+        console.log('left clicked: '+ itemName)
+    }
+
+    const handleRightClick = (itemName) => {
+        console.log('right clicked: '+ itemName)
+    }
+
     let content = itemsData &&
         // create item lists. get corresponding items from itemsData
         // notice that index wouldn't be changed, so we can use it as key here
@@ -52,6 +60,8 @@ export default function AssemblyLine({ stages }) {
             key={index}
             category={category}
             items={itemsData[category]}
+            onLeftClick={handleLeftClick}
+            onRightClick={handleRightClick}
         />
         ));
 
