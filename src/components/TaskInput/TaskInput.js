@@ -39,18 +39,22 @@ const TaskInput = ({ stages, setItemsData }) => {
     };
 
     return (
-    <form className="search-box" onSubmit={handleInputSubmit}>
-        <label htmlFor="add-item">Add an item: </label>
-        <input
-            type="text"
-            id="add-item"
-            value={inputValue}
-            onChange={handleInputChange}
-        />
-        <span>
-            <small> *Please use keyboard 'ENTER' to submit</small>
-        </span>
-    </form>
+        <form 
+            className="search-box" 
+            onSubmit={handleInputSubmit}
+            name="task-submit"
+        >
+            <label htmlFor="add-item">Add an item: </label>
+            <input
+                type="text"
+                id="add-item"
+                value={inputValue}
+                onChange={handleInputChange}
+            />
+            <span>
+                <small> *Please use keyboard 'ENTER' to submit</small>
+            </span>
+        </form>
   )
 }
 
