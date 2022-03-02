@@ -1,4 +1,5 @@
-import Item from "./Item";
+import Item from "../Item/Item";
+import "./Items.css";
 
 export default function Items({ category, items, onLeftClick, onRightClick }) {
     // here we pass an unique id as key

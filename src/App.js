@@ -1,5 +1,5 @@
 import './App.css';
-import AssemblyLine from "./components/AssemblyLine";
+import AssemblyLine from "./components/AssemblyLine/AssemblyLine";
 
 function App() {
   const list = ["Idea", "Development", "Testing", "Deployment"];

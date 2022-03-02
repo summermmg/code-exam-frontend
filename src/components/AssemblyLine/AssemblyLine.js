@@ -1,5 +1,6 @@
+import './AssemblyLine.css';
 import {useState} from 'react';
-import Items from './Items';
+import Items from '../Items/Items';
 import uuid from "react-uuid";
 
 export default function AssemblyLine({ stages }) {

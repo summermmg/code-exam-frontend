@@ -1,3 +1,5 @@
+import "./Item.css";
+
 export default function Item({ item, onLeftClick, onRightClick }) {
     const handleClick = (e) => {
         e.preventDefault();
