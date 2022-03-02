@@ -1,6 +1,7 @@
 import './AssemblyLine.css';
 import {useState} from 'react';
 import Items from '../Items/Items';
+import TaskInput from '../TaskInput/TaskInput';
 import uuid from "react-uuid";
 
 export default function AssemblyLine({ stages }) {
@@ -13,37 +14,6 @@ export default function AssemblyLine({ stages }) {
     // state
     // {'idea': [{id: xxx, item: 'item1', category: 'idea'}, ...], 'Development':...}
     const [itemsData, setItemsData] = useState(itemsMap);
-    const [inputValue, setInputValue] = useState("");
-
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value);
-    };
-    // by press 'ENTER', task will be added to first col
-    const handleInputSubmit = (e) => {
-        e.preventDefault();
-        if (!inputValue) {return}
-        setItemsData((prevMap) => {
-            let newMap = {};
-            // [categoryName, itemList] looks like this: ['Idea', [{..}, {..}]]
-            Object.entries(prevMap).forEach(([categoryName, itemList]) => {
-              // prepend new task to first column and give it an unique id
-              if (categoryName === stages[0]) {
-                newMap[categoryName] = [
-                  {
-                    item: inputValue,
-                    category: categoryName,
-                    id: uuid()
-                  },
-                  ...itemList
-                ];
-              } else {
-                newMap[categoryName] = itemList;
-              }
-            });
-            return newMap;
-        });
-        setInputValue("");
-    };
 
     const handleLeftClick = (id, category, itemName) => {
         // update itemsData based on prev object data
@@ -122,18 +92,10 @@ export default function AssemblyLine({ stages }) {
 
     return (
         <div className="container">
-            <form className="search-box" onSubmit={handleInputSubmit}>
-                <label htmlFor="add-item">Add an item: </label>
-                <input
-                type="text"
-                id="add-item"
-                value={inputValue}
-                onChange={handleInputChange}
-                />
-                <span>
-                    <small> *Please use keyboard 'ENTER' to submit</small>
-                </span>
-            </form>
+            <TaskInput 
+              stages={stages}
+              setItemsData={setItemsData}
+            />
             <div className="ul-container">{content}</div>
         </div>
     )
