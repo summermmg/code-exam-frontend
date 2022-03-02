@@ -4,9 +4,6 @@ import AssemblyLine from "../AssemblyLine";
 // Test interactions between components
 
 const addTask = (tasks) => {
-    // const inputElement = screen.getByLabelText(/add an item:/i);
-    // fireEvent.click(inputElement);
-    // fireEvent.change(inputElement, { target: { value: input }});
     const inputElement = screen.getByLabelText(/add an item:/i);
     const formElement = screen.getByRole('form', { name: ""});
     tasks.forEach((task) => {
